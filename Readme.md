@@ -23,17 +23,6 @@ type Person struct {
 	Friends []Person
 }
 
-func init() {
-	dm.Validate(Person,
-		dm.Presence{ Field: "Id" },
-		dm.Presence{ Field: "GenderId" },
-		dm.Includes{ Field: "GenderId", Values:  })	
-
-	dm.BeforeSave(Person, func(person *Person) error {
-		
-	})
-}
-
 func main() {
 	person := new(Person)
 	if err := dm.Find(person, "uuid-goes-here", dm.Condition{ With: "Gender" }); err != nil {
